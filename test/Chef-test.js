@@ -1,90 +1,85 @@
-var assert = require("chai").assert;
-var Chef = require("../src/Chef");
+const { assert } = require('chai');
+const Chef = require('../src/Chef');
 
-var {
-  createRestaurant,
-  addMenuItem
-} = require("../src/restaurant");
+const { createRestaurant, addMenuItem } = require('../src/restaurant');
 
-
-describe("Chef (class)", function() {
-  it.skip('should instantiate a chef object', function () {
-    var hannah = new Chef("Hannah");
+describe('Chef (class)', () => {
+  it('should instantiate a chef object', () => {
+    const hannah = new Chef('Hannah');
 
     assert.instanceOf(hannah, Chef);
   });
 
-  it.skip("should have a name", function() {
-    var chef = new Chef("Hannah");
+  it('should have a name', () => {
+    const chef = new Chef('Hannah');
 
-    assert.equal(chef.name, "Hannah");
+    assert.equal(chef.name, 'Hannah');
   });
 
-  it.skip("should be able to have a different name", function () {
-    var chef = new Chef("Casey");
+  it('should be able to have a different name', () => {
+    const chef = new Chef('Casey');
 
-    assert.equal(chef.name, "Casey");
+    assert.equal(chef.name, 'Casey');
   });
 
-  it.skip("should work at a restaurant", function() {
-    var restaurant = createRestaurant("Best Bakery Ever");
-    var chef = new Chef("Hannah", restaurant);
+  it('should work at a restaurant', () => {
+    const restaurant = createRestaurant('Best Bakery Ever');
+    const chef = new Chef('Hannah', restaurant);
 
-    assert.equal(chef.name, "Hannah");
+    assert.equal(chef.name, 'Hannah');
     assert.deepEqual(chef.restaurant, restaurant);
   });
 
-  it.skip("should be able to work at a different restaurant", function () {
-    var restaurant = createRestaurant("Amazing Bakery");
-    var chef = new Chef("Scott", restaurant);
+  it('should be able to work at a different restaurant', () => {
+    const restaurant = createRestaurant('Amazing Bakery');
+    const chef = new Chef('Scott', restaurant);
 
     assert.deepEqual(chef.restaurant, restaurant);
   });
 
-  it.skip("should be able to great a customer by name", function() {
-    var scott = new Chef("Scott");
+  it('should be able to great a customer by name', () => {
+    const scott = new Chef('Scott');
 
-    assert.equal(scott.greetCustomer("Will"), "Hello, Will!");
-    assert.equal(scott.greetCustomer("Pam"), "Hello, Pam!");
+    assert.equal(scott.greetCustomer('Will'), 'Hello, Will!');
+    assert.equal(scott.greetCustomer('Pam'), 'Hello, Pam!');
   });
 
-  it.skip('should greet a customer differently if it is morning', function () {
-    var casey = new Chef("Casey");
+  it('should greet a customer differently if it is morning', () => {
+    const casey = new Chef('Casey');
 
-    assert.equal(casey.greetCustomer("Scott"), "Hello, Scott!");
-    assert.equal(casey.greetCustomer("Amy", true), "Good morning, Amy!");
-    assert.equal(casey.greetCustomer("Hannah", false), "Hello, Hannah!");
+    assert.equal(casey.greetCustomer('Scott'), 'Hello, Scott!');
+    assert.equal(casey.greetCustomer('Amy', true), 'Good morning, Amy!');
+    assert.equal(casey.greetCustomer('Hannah', false), 'Hello, Hannah!');
   });
 
-  it.skip("should confirm if a requested item is on the menu", function() {
-    var restaurant = createRestaurant("Average Bakery");
-    var chef = new Chef("Hannah", restaurant);
+  it('should confirm if a requested item is on the menu', () => {
+    const restaurant = createRestaurant('Average Bakery');
+    const chef = new Chef('Hannah', restaurant);
 
-    var foodItem = { 
-      name: "Cinnamon Rolls",
-      price: "4.49",
-      type: "breakfast" 
+    const foodItem = {
+      name: 'Cinnamon Rolls',
+      price: '4.49',
+      type: 'breakfast',
     };
 
     addMenuItem(chef.restaurant, foodItem);
 
-    var foodConfirmation = chef.checkForFood(foodItem);
+    const foodConfirmation = chef.checkForFood(foodItem);
 
     assert.equal(foodConfirmation, "Yes, we're serving Cinnamon Rolls today!");
-
   });
 
-  it.skip("should confirm if a requested item is not on the menu", function () {
-    var restaurant = createRestaurant("Best Bakery Ever");
-    var chef = new Chef("Scott", restaurant);
+  it('should confirm if a requested item is not on the menu', () => {
+    const restaurant = createRestaurant('Best Bakery Ever');
+    const chef = new Chef('Scott', restaurant);
 
-    var foodItem = {
-      name: "Quiche",
-      price: "6.49",
-      type: "lunch"
+    const foodItem = {
+      name: 'Quiche',
+      price: '6.49',
+      type: 'lunch',
     };
 
-    var foodConfirmation = chef.checkForFood(foodItem);
+    const foodConfirmation = chef.checkForFood(foodItem);
 
     assert.equal(foodConfirmation, "Sorry, we aren't serving Quiche today.");
   });
