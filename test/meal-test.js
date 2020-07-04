@@ -1,145 +1,146 @@
-var chai = require("chai");
-var assert = chai.assert;
+const chai = require('chai');
 
-var {
+const { assert } = chai;
+
+const {
   nameMenuItem,
   createMenuItem,
   addIngredients,
   formatPrice,
   decreasePrice,
-  createRecipe
-} = require("../src/meal");
+  createRecipe,
+} = require('../src/meal');
 
-describe("meal.js", function() {
-  describe("nameMenuItem", function() {
-    it("should be a function", function() {
-     assert.isFunction(nameMenuItem);
+describe('meal.js', () => {
+  describe('nameMenuItem', () => {
+    it('should be a function', () => {
+      assert.isFunction(nameMenuItem);
     });
 
-    it.skip("should take in a name and make a delicious name", function () {
-      var menuItemName = nameMenuItem("Pizza");
-      assert.equal(menuItemName, "Delicious Pizza");
+    it('should take in a name and make a delicious name', () => {
+      const menuItemName = nameMenuItem('Pizza');
+      assert.equal(menuItemName, 'Delicious Pizza');
     });
 
-    it.skip("should be able to create many delicious titles", function () {
-      var burritoItem = nameMenuItem("Burrito");
-      var sushiItem = nameMenuItem("Pizza");
-      var tacoItem = nameMenuItem("Taco");
+    it('should be able to create many delicious titles', () => {
+      const burritoItem = nameMenuItem('Burrito');
+      const sushiItem = nameMenuItem('Pizza');
+      const tacoItem = nameMenuItem('Taco');
 
-      assert.equal(burritoItem, "Delicious Burrito");
-      assert.equal(sushiItem, "Delicious Pizza");
-      assert.equal(tacoItem, "Delicious Taco");
+      assert.equal(burritoItem, 'Delicious Burrito');
+      assert.equal(sushiItem, 'Delicious Pizza');
+      assert.equal(tacoItem, 'Delicious Taco');
     });
   });
 
-  describe("createMenuItem", function() {
-    it.skip("should be a function", function () {
+  describe('createMenuItem', () => {
+    it('should be a function', () => {
       assert.isFunction(createMenuItem);
     });
 
-    it.skip("should create a menu item object", function() {
-      var menuItemName = nameMenuItem("French Toast");
-      var menuItem = createMenuItem(menuItemName, 10.99, "breakfast");
+    it('should create a menu item object', () => {
+      const menuItemName = nameMenuItem('French Toast');
+      const menuItem = createMenuItem(menuItemName, 10.99, 'breakfast');
 
-      assert.equal(menuItem.name, "Delicious French Toast");
+      assert.equal(menuItem.name, 'Delicious French Toast');
       assert.equal(menuItem.price, 10.99);
-      assert.equal(menuItem.type, "breakfast");
+      assert.equal(menuItem.type, 'breakfast');
     });
   });
 
-  describe("addIngredients", function() {
-    it.skip("should be a function", function () {
+  describe('addIngredients', () => {
+    it('should be a function', () => {
       assert.isFunction(addIngredients);
     });
 
-    it.skip("should be able to add ingredients to an array", function() {
-      var ingredients = [];
+    it('should be able to add ingredients to an array', () => {
+      const ingredients = [];
 
-      addIngredients("cheese", ingredients);
+      addIngredients('cheese', ingredients);
 
       assert.equal(ingredients.length, 1);
-      assert.deepEqual(ingredients, ["cheese"]);
+      assert.deepEqual(ingredients, ['cheese']);
     });
 
-    it.skip("should be able to add ingredients to an array that already contains ingredients", function() {
-      var ingredients = [];
+    it('should be able to add ingredients to an array that already contains ingredients', () => {
+      const ingredients = [];
 
-      addIngredients("cheese", ingredients);
-      addIngredients("peppers", ingredients);
+      addIngredients('cheese', ingredients);
+      addIngredients('peppers', ingredients);
 
       assert.equal(ingredients.length, 2);
-      assert.deepEqual(ingredients, ["cheese", "peppers"]);
+      assert.deepEqual(ingredients, ['cheese', 'peppers']);
     });
 
-    it.skip("should only add unique ingredients", function() {
-      var ingredients = [];
+    it('should only add unique ingredients', () => {
+      const ingredients = [];
 
-      addIngredients("cheese", ingredients);
-      addIngredients("peppers", ingredients);
-      addIngredients("peppers", ingredients);
+      addIngredients('cheese', ingredients);
+      addIngredients('peppers', ingredients);
+      addIngredients('peppers', ingredients);
 
       assert.equal(ingredients.length, 2);
-      assert.deepEqual(ingredients, ["cheese", "peppers"]);
-    })
-  })
-
-  describe("formatPrice", function() {
-    it.skip("should be a function", function () {
-      assert.isFunction(formatPrice);
-    });
-
-    it.skip("should add a dollar sign in front of the price", function () {
-      var menuItemName = nameMenuItem("French Toast");
-      var menuItem = createMenuItem(menuItemName, 10.99, "breakfast");
-      var initialPrice = menuItem.price;
-
-      var formattedPrice = formatPrice(initialPrice);
-      assert.equal(formattedPrice, "$10.99")
-    });
-
-    it.skip("should add a dollar sign in front of a different price", function () {
-      var menuItemName = nameMenuItem("Carrot Cake");
-      var menuItem = createMenuItem(menuItemName, 5.99, "dessert");
-      var initialPrice = menuItem.price;
-
-      var formattedPrice = formatPrice(initialPrice);
-      assert.equal(formattedPrice, "$5.99")
+      assert.deepEqual(ingredients, ['cheese', 'peppers']);
     });
   });
 
-  describe("decreasePrice", function() {
-    it.skip("should be a function", function () {
+  describe('formatPrice', () => {
+    it('should be a function', () => {
+      assert.isFunction(formatPrice);
+    });
+
+    it('should add a dollar sign in front of the price', () => {
+      const menuItemName = nameMenuItem('French Toast');
+      const menuItem = createMenuItem(menuItemName, 10.99, 'breakfast');
+      const initialPrice = menuItem.price;
+
+      const formattedPrice = formatPrice(initialPrice);
+      assert.equal(formattedPrice, '$10.99');
+    });
+
+    it('should add a dollar sign in front of a different price', () => {
+      const menuItemName = nameMenuItem('Carrot Cake');
+      const menuItem = createMenuItem(menuItemName, 5.99, 'dessert');
+      const initialPrice = menuItem.price;
+
+      const formattedPrice = formatPrice(initialPrice);
+      assert.equal(formattedPrice, '$5.99');
+    });
+  });
+
+  describe('decreasePrice', () => {
+    it('should be a function', () => {
       assert.isFunction(decreasePrice);
     });
 
-    it.skip("should decrease the price by 10%", function() {
-      var menuItemName = nameMenuItem("Fajitas");
-      var menuItem = createMenuItem(menuItemName, 6.00, "dessert");
-      var decreasedPrice = decreasePrice(menuItem.price);
+    it('should decrease the price by 10%', () => {
+      const menuItemName = nameMenuItem('Fajitas');
+      const menuItem = createMenuItem(menuItemName, 6.0, 'dessert');
+      const decreasedPrice = decreasePrice(menuItem.price);
 
-      assert.equal(decreasedPrice, 5.40);
-    })
-  })
+      assert.equal(decreasedPrice, 5.4);
+    });
+  });
 
-  describe("createRecipe", function() {
-    it.skip("should be a function", function () {
+  describe('createRecipe', () => {
+    it('should be a function', () => {
       assert.isFunction(createRecipe);
     });
 
-    it.skip("should return a recipe object", function() {
-      var ingredients = [];
-      addIngredients("eggs", ingredients);
-      addIngredients("bacon", ingredients);
+    it('should return a recipe object', () => {
+      const ingredients = [];
+      addIngredients('eggs', ingredients);
+      addIngredients('bacon', ingredients);
 
-      var title = nameMenuItem("Eggs & Bacon");
-      var price = formatPrice("10.85")
-      var menuItem = createMenuItem(title, price, "breakfast");
-      var menuItemType = menuItem.type;
+      const title = nameMenuItem('Eggs & Bacon');
+      const price = formatPrice('10.85');
+      const menuItem = createMenuItem(title, price, 'breakfast');
+      const menuItemType = menuItem.type;
 
-      var recipe = createRecipe(title, ingredients , menuItemType);
-      assert.equal(recipe.title, "Delicious Eggs & Bacon");
-      assert.deepEqual(recipe.ingredients, ["eggs", "bacon"]);
-      assert.equal(recipe.type, "breakfast");
+      const recipe = createRecipe(title, ingredients, menuItemType);
+      assert.equal(recipe.title, 'Delicious Eggs & Bacon');
+      assert.deepEqual(recipe.ingredients, ['eggs', 'bacon']);
+      assert.equal(recipe.type, 'breakfast');
     });
   });
 });
